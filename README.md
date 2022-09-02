@@ -32,7 +32,7 @@ Ex:
 1. Pull the docker image: ```docker pull rasanjana29/pipedrive-e2e-tests:2.0.0-arm64```
 2. Run the docker ```docker run -t -i -v ${PWD}/PipeDrive-ui-test-reports:/e2e-test/cypress/reports rasanjana29/pipedrive-e2e-tests:2.0.0-arm64 npx cypress run```
 
-After the tests are executed, a test report will be generated in the current directory of the terminal with name “Veriff-ui-test-reports/html/index.html”.
+After the tests are executed, a test report will be generated in the current directory of the terminal with name PipeDrive-ui-test-reports/html/index.html”.
 
 
 html report : 

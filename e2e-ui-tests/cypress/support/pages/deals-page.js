@@ -99,7 +99,7 @@ export class Deals {
 
     static deleteDeal(dealName) {
         cy.reload(true);
-        cy.get(dealPipelineTile, { timeout: TIMEOUT_SHORT }).contains(dealName).click();
+        cy.get(dealPipelineTile, { timeout: TIMEOUT_LONG }).contains(dealName).click();
         cy.get(dealOptionsbutton, { timeout: TIMEOUT_SHORT }).click({ force: true });
         cy.get(deleteButton).click();
     }
