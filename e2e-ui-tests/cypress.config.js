@@ -8,6 +8,8 @@ module.exports = {
     chromeWebSecurity: false,
     env: {
       pipedrive_url: 'https://www.pipedrive.com',
+      userName: 'snironr@gmail.com',
+      password: 'rasanjana29',
     },
 
   },

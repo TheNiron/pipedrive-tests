@@ -5,7 +5,7 @@ import {PIPEDRIVE_URL, TIMEOUT_SHORT } from '../constants';
 
 export class HomePage {
 
-  static navigateToPipeline() {
+  static navigateToPipedrive() {
     cy.viewport(1920,1080)
     Cypress.on('uncaught:exception', (err, runnable) => {
       return false;

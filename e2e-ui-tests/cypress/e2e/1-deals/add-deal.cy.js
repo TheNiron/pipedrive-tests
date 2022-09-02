@@ -3,14 +3,15 @@
 import { HomePage } from '../../support/pages/home-page';
 import { LoginPage } from '../../support/pages/login-page';
 import { Deals } from '../../support/pages/deals-page';
+import {USERNAME, PASSWORD } from '../../support/constants';
 
 const DATAJSON = require('../../fixtures/mixedInputDataSet');
 
-describe('Test the Pipeline adding a new deal flow', () => {
+describe('Test the Pipedrive adding a new deal flow', () => {
   beforeEach(() => {
-    HomePage.navigateToPipeline();
+    HomePage.navigateToPipedrive();
     HomePage.navigateToLogin();
-    LoginPage.login('niron@wso2.com', 'rasanjana29');
+    LoginPage.login(Cypress.env(USERNAME), Cypress.env(PASSWORD));
   });
 
   it('Add a new deal filling main fields', () => {
@@ -28,6 +29,7 @@ describe('Test the Pipeline adding a new deal flow', () => {
     Deals.enterPhoneNumber('+94711340909', 1);
     Deals.enterEmailAddress('niron@wso2.com', 1);
     Deals.saveNewDeal();
+    Deals.verifyNewDealSavedMessage("Coconut Hammock's Deal-29");
     Deals.deleteDeal('Coconut Hammock');
   });
 
@@ -41,6 +43,7 @@ describe('Test the Pipeline adding a new deal flow', () => {
       Deals.clearTitle();
       Deals.typeDealTitle(userInput.title);
       Deals.saveNewDeal();
+      Deals.verifyNewDealSavedMessage(userInput.title);
       Deals.deleteDeal(userInput.title);
     });
   });
@@ -74,6 +77,7 @@ describe('Test the Pipeline adding a new deal flow', () => {
     Deals.ClickAddNewDeal();
     Deals.typePersonName('James bond');
     Deals.saveNewDeal();
+    Deals.verifyNewDealSavedMessage("James bond deal");
     Deals.deleteDeal('James bond');
   });
 
@@ -82,6 +86,7 @@ describe('Test the Pipeline adding a new deal flow', () => {
     Deals.ClickAddNewDeal();
     Deals.typeOrgName('Umbrella organization');
     Deals.saveNewDeal();
+    Deals.verifyNewDealSavedMessage("Umbrella organization deal");
     Deals.deleteDeal('Umbrella organization');
   });
 
