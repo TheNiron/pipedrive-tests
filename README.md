@@ -38,3 +38,26 @@ After the tests are executed, a test report will be generated in the current dir
 html report : 
 <img width="1423" alt="report  2022-09-02 at 2 11 51 PM" src="https://user-images.githubusercontent.com/32265029/188100657-383e7924-8752-4f4a-a529-cbec0ebe9482.png">
 
+
+## Automated E2E test cases
+|Scenarios|status                       |
+|---------|-----------------------------|
+|Add a new deal filling main fields|done                         |
+|Add new deal without filling any fields|done                         |
+|Add new deal without filling the mandatory field Title|done                         |
+|Add new deal with just filling the title|done                         |
+|Add new deal filling the mandatory fields only - Person name|done                         |
+|Add new deal filling the mandatory fields only - Org name|done                         |
+|Select existing Person and validate autofilling|done                         |
+|Add invalid phone number|done                         |
+|Add invalid email address|done                         |
+|Add multiple phone numbers|done                         |
+|Add multiple email addresses|done                         |
+|Add products|done                         |
+|Add invalid date|done                         |
+|Add older date|done                         |
+|Verify auto generated deal name|done                         |
+|Verify deal title is generated from Org name over person name|done                         |
+|Already exisitng person's contacts uneditable|done                         |
+|Phone numbers only available when person name is entered, not for organization|done                         |
+|Add new deal with and without Person name, organization and Deal title combinations (based on decision table)|done                         |

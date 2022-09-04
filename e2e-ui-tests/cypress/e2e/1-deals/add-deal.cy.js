@@ -12,11 +12,11 @@ describe('Test the Pipedrive adding a new deal flow', () => {
     HomePage.navigateToPipedrive();
     HomePage.navigateToLogin();
     LoginPage.login(Cypress.env(USERNAME), Cypress.env(PASSWORD));
+    Deals.verifyDealsPage();
+    Deals.ClickAddNewDeal();
   });
 
   it('Add a new deal filling main fields', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Adam Levine');
     Deals.typeOrgName('Coconut Hammock');
     Deals.clearTitle();
@@ -36,8 +36,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   // Following test is a data driven test where valid mixed set of inputs are fed from mixedInputDataSet.json
   DATAJSON.forEach((userInput) => {
     it(`Add new deal with and without Person name, organization and Deal title combinations - ${userInput.test_Name}`, () => {
-      Deals.verifyDealsPage();
-      Deals.ClickAddNewDeal();
       Deals.typePersonName(userInput.person);
       Deals.typeOrgName(userInput.org);
       Deals.clearTitle();
@@ -49,15 +47,11 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add new deal without filling any fields', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.saveNewDeal();
     Deals.verifyErrorMessage('A person or organization is required');
   });
 
   it('Add new deal without filling the mandatory field Title', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Adam west');
     Deals.clearTitle();
     Deals.saveNewDeal();
@@ -65,16 +59,12 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add new deal without filling the mandatory field Title', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typeDealTitle('Sample title for nothing');
     Deals.saveNewDeal();
     Deals.verifyErrorMessage('A person or organization is required');
   });
 
   it('Add new deal filling the mandatory fields only - Person name', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('James bond');
     Deals.saveNewDeal();
     Deals.verifyNewDealSavedMessage("James bond deal");
@@ -82,8 +72,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add new deal filling the mandatory fields only - Organization', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typeOrgName('Umbrella organization');
     Deals.saveNewDeal();
     Deals.verifyNewDealSavedMessage("Umbrella organization deal");
@@ -91,8 +79,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Select existing Person and validate autofilling', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Adam Levine');
     Deals.selectExistingPerson('Adam Levine (Coconut Hammock)');
     Deals.verifyTextInOrganizationField('Coconut Hammock');
@@ -103,16 +89,12 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Verify already exisitng person contacts uneditable', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Adam Levine');
     Deals.selectExistingPerson('Adam Levine (Coconut Hammock)');
     Deals.verifyAddingPhoneAndEmailDisabled();
   });
 
   it('Add invalid phone number', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Zeus');
     Deals.typeOrgName('Olympus');
     Deals.clearTitle();
@@ -123,8 +105,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add invalid email address', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Zeus');
     Deals.typeOrgName('Olympus');
     Deals.clearTitle();
@@ -137,8 +117,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add multiple phone numbers', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Zeus Fernando');
     Deals.typeOrgName('Olympus');
     Deals.clearTitle();
@@ -156,8 +134,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add multiple email addresses', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Pearson Fernando');
     Deals.typeOrgName('Newyork@24');
     Deals.clearTitle();
@@ -176,8 +152,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add invalid date as expected closing date', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typeOrgName('Umbrella organization');
     Deals.enterExpectedCloseDate('26/22/2023');
     Deals.verifyErrorMessage('Invalid date format');
@@ -187,8 +161,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add older date as expected closing date', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typeOrgName('Umbrella organization');
     Deals.enterExpectedCloseDate('12/22/2013');
     // This step witll fail cause there is no such error message currently and it's a bug
@@ -196,15 +168,11 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Verify auto generated deal title', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Damon Salvator');
     Deals.verifyTextInTitleField('Damon Salvator deal');
   });
 
   it('Verify deal title is generated from Org name over person name', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Damon Salvator');
     Deals.verifyTextInTitleField('Damon Salvator deal');
     Deals.typeOrgName('SmallVille');
@@ -212,8 +180,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Verify contact info fields only available when person name is entered, not for organization', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typeOrgName('SmallVille');
     Deals.verifyAddingPhoneAndEmailDisabled();
     Deals.typePersonName('Damon Salvator');
@@ -223,8 +189,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add a product', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Clark Kent');
     Deals.clickAddProductsButton();
     Deals.addProducts(1, 'Our first Product', 250, 5, 12);
@@ -232,8 +196,6 @@ describe('Test the Pipedrive adding a new deal flow', () => {
   });
 
   it('Add multiple products', () => {
-    Deals.verifyDealsPage();
-    Deals.ClickAddNewDeal();
     Deals.typePersonName('Bruce Wayne');
     Deals.clickAddProductsButton();
     Deals.addMultipleItems();
