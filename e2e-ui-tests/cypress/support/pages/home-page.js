@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import {PIPEDRIVE_URL, TIMEOUT_SHORT } from '../constants';
+import {PIPEDRIVE_URL, TIMEOUT_MEDIUM } from '../constants';
 
 
 export class HomePage {
@@ -17,7 +17,7 @@ export class HomePage {
   }
 
   static navigateToLogin() {
-  cy.get('[class="puco-navigation-link__text"]',{timeout: TIMEOUT_SHORT}).contains("Log in").click();
+  cy.get('[class="puco-navigation-link__text"]',{timeout: TIMEOUT_MEDIUM}).contains("Log in").click({force: true});
   }
 
 
