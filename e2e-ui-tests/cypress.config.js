@@ -6,6 +6,7 @@ module.exports = {
       require('cypress-mochawesome-reporter/plugin')(on);
     },
     chromeWebSecurity: false,
+    videoCompression:0,
     env: {
       pipedrive_url: 'https://www.pipedrive.com',
       userName: 'snironr@gmail.com',
