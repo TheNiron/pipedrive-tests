@@ -14,11 +14,11 @@ jobs:
       # Install NPM dependencies.
       - name: Cypress run
         uses: cypress-io/github-action@v4
+        continue-on-error: true
         with:
           working-directory: e2e-ui-tests
           build: npm install
           start: npx cypress run --browser chrome
-          continue-on-error: true
 
       - name: Copy test execution videos and screenshots
         run: |
