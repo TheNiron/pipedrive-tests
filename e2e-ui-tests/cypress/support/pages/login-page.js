@@ -6,10 +6,10 @@ let nameField = "[name='name']";
 export class LoginPage {
 
     static login(username,password) {
-        cy.get('[class="auth-form__title"]').contains("Log in");
-        cy.get('[data-test="login"]').type(username);
-        cy.get('[data-test="password"]').type(password);
-        cy.get('[data-test="submit-button"]').click();
+        cy.get('[class="auth-form__container"]>h3').contains("Log in");
+        cy.get('[name="login"]').type(username);
+        cy.get('[name="password"]').type(password);
+        cy.get('[class="login"]>button').click();
         LoginPage.verifyAccountMenuButton;
         }
 
