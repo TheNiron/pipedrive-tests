@@ -27,8 +27,7 @@ jobs:
           cp -r e2e-ui-tests/cypress/screenshots public/screenshots
 
       - name: Merge test reports
-        with:
-          working-directory: e2e-ui-tests
+        working-directory: e2e-ui-tests
         run: npm run combine:report
 
       - name: Generate HTML report
