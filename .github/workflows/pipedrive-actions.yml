@@ -26,12 +26,12 @@ jobs:
           cp -r e2e-ui-tests/cypress/videos public/videos
           cp -r e2e-ui-tests/cypress/screenshots public/screenshots
 
-      - name: Merge test reports
-        working-directory: e2e-ui-tests
-        run: npm run combine:report
+      # - name: Merge test reports
+      #   working-directory: e2e-ui-tests
+      #   run: npx cypress mochawesome-merge ./mochawesome-report/*.json -o index.json
 
-      - name: Generate HTML report
-        run: npm run generate:report
+      # - name: Generate HTML report
+      #   run: npm run generate:report
       
       - name: Deploy report page to GitHub Page
         uses: peaceiris/actions-gh-pages@v3
