@@ -8,9 +8,9 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./e2e-ui-tests
+    # defaults:
+    #   run:
+    #     working-directory: e2e-ui-tests
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,5 +19,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
+          working-directory: e2e
           build: npm install
           start: npx cypress run --browser chrome
