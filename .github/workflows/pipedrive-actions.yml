@@ -15,7 +15,6 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v4
-        working-directory: ./e2e-ui-tests
         with:
           build: npm install
           start: npx cypress run --browser chrome
