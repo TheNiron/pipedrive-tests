@@ -28,10 +28,12 @@ jobs:
 
       - name: Merge test reports
         run: npm run combine:report
+        working-directory: e2e-ui-tests
 
       - name: Generate HTML report
         run: npm run generate:report
-              
+        working-directory: e2e-ui-tests
+
       - name: Deploy report page to GitHub Page
         uses: peaceiris/actions-gh-pages@v3
         with:
