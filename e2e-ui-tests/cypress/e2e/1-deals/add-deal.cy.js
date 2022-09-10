@@ -58,7 +58,7 @@ describe('Test the Pipedrive adding a new deal flow', () => {
     Deals.verifyErrorMessage('Title is required');
   });
 
-  it('Add new deal without filling the mandatory field Title', () => {
+  it('Add new deal with just filling the title', () => {
     Deals.typeDealTitle('Sample title for nothing');
     Deals.saveNewDeal();
     Deals.verifyErrorMessage('A person or organization is required');
