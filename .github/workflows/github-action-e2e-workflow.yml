@@ -1,0 +1,36 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: 
+     - 'main'
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      
+      # Install NPM and run test.
+      - name: Cypress install and run
+        uses: cypress-io/github-action@v4
+      # This makes sure to continue other steps of the workflow even there are test failures.
+        continue-on-error: true
+        with:
+          working-directory: e2e-ui-tests
+          build: npm install
+          start: npx cypress run --browser chrome
+
+      - name: Copy test execution videos and screenshots
+        run: |
+          mkdir public
+          cp -r e2e-ui-tests/cypress/videos public/videos
+          cp -r e2e-ui-tests/cypress/screenshots public/screenshots
+          cp -r e2e-ui-tests/cypress/reports public
+      
+      - name: Deploy report page to GitHub Page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
