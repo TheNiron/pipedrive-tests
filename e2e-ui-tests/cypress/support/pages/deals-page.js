@@ -33,6 +33,7 @@ let addMoreItemsButton = '[data-test="products-add-more"]';
 export class Deals {
 
     static verifyDealsPage() {
+        cy.wait(30000);
         cy.get(addDealbutton, { timeout: TIMEOUT_LONG }).should('be.visible');
     }
 
